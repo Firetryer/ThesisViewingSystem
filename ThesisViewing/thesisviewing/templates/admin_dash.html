@@ -3,22 +3,33 @@
 {% block outside %}
 
 
-<div class="container-fluid row h-100" style="padding-top: 0%">
+<div class="container-fluid row h-100">
 	
-		<div class="container col-md-2 bg-dark">
-			<div class="container-fluid row side_row" >
-				<a class="nav-link {{ 'text-light' if admin_page == 'thesis_control' else 'text-secondary' }} " href="{{ url_for('admin_thesis') }}">Thesis Settings</a>
+		<div class="container-fluid col-2 bg-secondary " >
+			<div class="container-fluid row side_row no-gutter" >
+
+				<a class="nav-link {{ 'text-light' if admin_page == 'modify_thesis' else 'text-dark' }}" style="width:100%" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+				Thesis Settings
+				</a>
 
 			</div>
-			<div class="container-fluid row side_row ">
-				<a class="nav-link {{ 'text-light' if admin_page == 'logs' else 'text-secondary' }} " href="{{ url_for('admin_logs') }}">View Logs</a>
+			<div class="collapse bg-light" id ="collapseExample">
+				<div class="container-fluid row side_row">
+					<a class="nav-link text-secondary" href="{{ url_for('admin_logs') }}">Add Thesis</a>
+				</div>
+				<div class="container-fluid row side_row">
+					<a class="nav-link text-secondary " href="{{ url_for('admin_logs') }}">Modify Thesis</a>
+				</div>
 			</div>
 			<div class="container-fluid row side_row">
-				<a class="nav-link {{ 'text-light' if admin_page == 'asd' else 'text-secondary' }}" href="{{ url_for('admin_logs') }}">View Users</a>
+				<a class="nav-link {{ 'text-light' if admin_page == 'logs' else 'text-dark' }} " href="{{ url_for('admin_logs') }}">View Logs</a>
+			</div>
+			<div class="container-fluid row side_row" >
+				<a class="nav-link {{ 'text-light' if admin_page == 'asd' else 'text-dark' }}" href="{{ url_for('admin_logs') }}">View Users</a>
 			</div>
 
 		</div>
-		<div class="container col-md-10" >
+		<div class="container-fluid col-10" >
 			{% block admin %} {% endblock %}
 		</div>
 	
