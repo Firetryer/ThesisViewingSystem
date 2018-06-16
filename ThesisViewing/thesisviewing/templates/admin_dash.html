@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "admin_pages/layout_admin.html" %}
 {% set active_page = "admin_dash" %}
 {% block outside %}
 
@@ -15,7 +15,7 @@
 			</div>
 			<div class="collapse bg-light" id ="collapseExample">
 				<div class="container-fluid row side_row">
-					<a class="nav-link text-secondary" href="{{ url_for('admin_logs') }}">Add Thesis</a>
+					<a class="nav-link text-secondary" href="{{ url_for('admin_add_thesis') }}">Add Thesis</a>
 				</div>
 				<div class="container-fluid row side_row">
 					<a class="nav-link text-secondary " href="{{ url_for('admin_logs') }}">Modify Thesis</a>
@@ -30,7 +30,18 @@
 
 		</div>
 		<div class="container-fluid col-10" >
+			<div class="container" style="padding:10%; padding-top:2%">
+			{% with messages = get_flashed_messages(with_categories=true) %}
+					{% if messages %}
+						{% for category, message in messages %}
+							<div class="alert alert-{{ category }}">
+								{{ message }}
+							</div>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
 			{% block admin %} {% endblock %}
+			</div>
 		</div>
 	
 </div>

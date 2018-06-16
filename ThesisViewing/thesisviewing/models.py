@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
 	user_level = db.Column(db.VARCHAR(50), nullable = False)
 	password = db.Column(db.VARCHAR(100), nullable = False)
 	logs = db.relationship('UserLogs', backref='user', lazy=True)
+	
 	def __repr__(self):
 		return f"User('{self.id_number}', '{self.course_dept}')"
 	def get_id(self):

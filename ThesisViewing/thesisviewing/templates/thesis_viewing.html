@@ -1,6 +1,40 @@
 {% extends "layout.html" %}
 {% set active_page = "view_thesis" %}
 {% block content %}
-
+	<p> As an Admin account, you can modify or delete any thesis records in the database here. </p>
+	<p> Normal users cant see those admin features</p>
+	<div class="container-fluid row">
+		<div class="container-fluid col-8 " >
+			
+				{% for post in post %}
+					<div class="card mb-3" >
+						<div class="card-header">
+							<h5 class="card-title"><b>{{ post.title }}</b></h5>
+							<h6 class="card-subtitle mb-2 text-muted">
+								Thesis Code : {{ post.thesis_code }}
+							</h6>
+						</div>
+						<div class="card-body">
+							
+							
+							<p class="card-text">{{ post.abstract }}</p>
+							
+						</div>
+						{% if current_user.is_admin() %}
+						<div class="card-footer">
+							
+							<a class="card-text text-info text-right"href="#"> Modify </a>
+							<a class="card-text text-danger text-right" href="#"> delete </a>
+							
+						</div>
+						{% endif %}
+					</div>
+				{% endfor %}
+			
+			
+		</div>
+		<div class="container col-2">
+				<h3>search</h3>
+		</div>
 
 {% endblock %}

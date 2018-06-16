@@ -1,0 +1,111 @@
+{% extends "admin_dash.html" %}
+{% set admin_page = "add_thesis" %}
+{% block admin %}
+	
+
+	<div class="content-section">
+		<form method="POST" action="">	
+			{{ form.hidden_tag() }}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4">Add New Thesis</legend>
+				<div class="form-group">
+					{{ form.thesis_code.label(class="form-control-label") }}
+
+					{% if form.thesis_code.errors %}
+						{{ form.thesis_code(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.thesis_code.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>	
+					{% else %}						
+						{{ form.thesis_code(class="form-control form-control-lg") }}
+					{% endif %}
+				</div>
+
+				<div class="form-group">
+					{{ form.title.label(class="form-control-label") }}
+					{% if form.title.errors %}
+						{{ form.title(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.title.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>	
+					{% else %}						
+						{{ form.title(class="form-control form-control-lg") }}
+					{% endif %}
+				</div>
+				<div class="form-group">
+					{{ form.keywords.label(class="form-control-label") }}
+					{% if form.keywords.errors %}
+						{{ form.keywords(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.keywords.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>	
+					{% else %}						
+						{{ form.keywords(class="form-control form-control-lg") }}
+					{% endif %}
+				</div>
+				<div class="form-group">
+					{{ form.tech_adviser.label(class="form-control-label") }}
+					{% if form.tech_adviser.errors %}
+						{{ form.tech_adviser(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.tech_adviser.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>	
+					{% else %}						
+						{{ form.tech_adviser(class="form-control form-control-lg") }}
+					{% endif %}
+				</div>
+				<div class="form-group">
+					{{ form.class_adviser.label(class="form-control-label") }}
+					{% if form.class_adviser.errors %}
+						{{ form.class_adviser(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.class_adviser.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>	
+					{% else %}						
+						{{ form.class_adviser(class="form-control form-control-lg") }}
+					{% endif %}
+				</div>
+				<div class="form-group">
+					{{ form.researcher.label(class="form-control-label") }}
+					{% if form.researcher.errors %}
+						{{ form.researcher(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.researcher.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>	
+					{% else %}						
+						{{ form.researcher(class="form-control form-control-lg") }}
+					{% endif %}
+				</div>
+				<div class="form-group">
+					{{ form.abstract.label(class="form-control-label") }}
+					{% if form.abstract.errors %}
+						{{ form.abstract(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.abstract.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>	
+					{% else %}						
+						{{ form.abstract(class="form-control form-control-lg") }}
+					{% endif %}
+				</div>
+			</fieldset>
+			<div class="form-group">
+				{{ form.submit(class="btn btn-outline-info") }}
+			</div>
+		</form>
+	</div>
+
+{% endblock %}

@@ -48,21 +48,12 @@
 			    </div>
 			</nav>
 		</header>
-			<main role="main" class="container">
-				<div class="container">
-				{% with messages = get_flashed_messages(with_categories=true) %}
-					{% if messages %}
-						{% for category, message in messages %}
-							<div class="alert alert-{{ category }}">
-								{{ message }}
-							</div>
-						{% endfor %}
-					{% endif %}
-				{% endwith %}
+		
+				<div class="container-fluid">
+				
 
 				{% block content %}{% endblock %}
 				</div>
-			</main>
 		</header>
 		
 		{% block outside %} {% endblock %}

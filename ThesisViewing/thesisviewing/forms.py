@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from thesisviewing.models import User
 
@@ -31,3 +31,13 @@ class LoginForm(FlaskForm):
 		validators=[DataRequired()])
 	remember = BooleanField("Remember Me")
 	submit = SubmitField('Login')
+
+class AddThesisForm(FlaskForm):
+	thesis_code = StringField('Thesis Code', validators=[DataRequired()])
+	title = StringField('Thesis Title', validators=[DataRequired()])
+	keywords = StringField('Keywords', validators=[])
+	tech_adviser = StringField('Tech Adviser', validators=[DataRequired()])
+	class_adviser = StringField('Class Adviser', validators=[DataRequired()])
+	researcher = StringField('Researcher', validators=[DataRequired()])
+	abstract = TextAreaField('Abstract', validators=[DataRequired()])
+	submit = SubmitField('Add Thesis')
