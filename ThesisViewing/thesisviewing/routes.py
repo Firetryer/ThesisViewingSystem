@@ -45,7 +45,7 @@ def thesis_delete(thesis_code):
 
 
 
-@app.route("/view_thesis/<thesis_code>/modify", methods=['GET', 'POST'])
+@app.route("/admin_dashboard/<thesis_code>/modify", methods=['GET', 'POST'])
 @login_required
 def thesis_update(thesis_code):
 	if not current_user.is_admin:
