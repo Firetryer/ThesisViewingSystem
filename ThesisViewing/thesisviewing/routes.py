@@ -60,7 +60,7 @@ def thesis_update(thesis_code):
 		form.class_adviser.data = thesis.class_adviser
 		form.researcher.data 	= thesis.researcher
 		form.abstract.data 		= thesis.abstract
-		form.submit.label.text 	= "Update"
+		form.submit.label.text 	= 'Update'
 
 	return render_template('/admin_pages/add_thesis.html',
 		title='Modify Thesis',
