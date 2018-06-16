@@ -90,7 +90,7 @@ def thesis_update(thesis_code):
 @app.route("/admin_dashboard")
 @login_required
 def admin_dash():
-	if not current_user.is_admin:
+	if not current_user.is_admin():
 		flash(" Warning: Only admins accounts are allowed in the Admin Dashboard.")
 		return redirect(url_for('view_thesis')) 
 	return render_template('/admin_dash.html')
@@ -99,7 +99,7 @@ def admin_dash():
 @app.route("/admin_dashboard/logs")
 @login_required
 def admin_logs():
-	if not current_user.is_admin:
+	if not current_user.is_admin():
 		flash(" Warning: Only admins accounts are allowed in the Admin Dashboard.")
 		return redirect(url_for('view_thesis')) 
 	return render_template('/admin_pages/logs.html')
@@ -108,7 +108,7 @@ def admin_logs():
 @app.route("/admin_dashboard/thesis_controls")
 @login_required
 def admin_thesis():
-	if not current_user.is_admin:
+	if not current_user.is_admin():
 		flash(" Warning: Only admins accounts are allowed in the Admin Dashboard.")
 		return redirect(url_for('view_thesis')) 
 	return render_template('/admin_pages/thesis_controls.html')
@@ -117,7 +117,7 @@ def admin_thesis():
 @app.route("/admin_dashboard/add_thesis", methods=['GET', 'POST'])
 @login_required
 def admin_add_thesis():
-	if not current_user.is_admin:
+	if not current_user.is_admin():
 		flash(" Warning: Only admins accounts are allowed in the Admin Dashboard.")
 		return redirect(url_for('view_thesis')) 
 	form = AddThesisForm()
