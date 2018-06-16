@@ -1,10 +1,7 @@
 {% extends "layout.html" %}
 {% set active_page = "view_thesis" %}
 {% block content %}
-	{% if current_user.is_admin() %}
-	<p> As an Admin account, you can modify or delete any thesis records in the database here. </p>
-	<p> Normal users cant see those admin features</p>
-	{% endif %}
+
 	<div class="container-fluid row">
 		<div class="container-fluid col-8 " >
 			
