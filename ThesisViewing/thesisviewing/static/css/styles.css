@@ -20,3 +20,9 @@ body, html {
     padding-right: 0 !important;
   }
 }
+
+.card_button{
+position: absolute;
+top: 0; left: 0;
+height: 100%; width: 100%;
+}
