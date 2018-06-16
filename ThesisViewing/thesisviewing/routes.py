@@ -25,7 +25,48 @@ def thesis_page(thesis_code):
 	post = Thesis.query.get_or_404(thesis_code)
 	return render_template('thesis_page.html', title=post.title, post=post)
 
+
+
+
 #Admin Pages Below
+@app.route("/view_thesis/<thesis_code>/modify", methods=['GET', 'POST'])
+@login_required
+def thesis_update(thesis_code):
+	if not current_user.is_admin:
+		flash(" Warning: Only admins accounts are allowed in the Admin Dashboard.")
+		return redirect(url_for('view_thesis')) 
+	thesis = Thesis.query.get_or_404(thesis_code)
+
+	form = AddThesisForm()
+
+	if form.validate_on_submit():
+		thesis.thesis_code  = form.thesis_code.data,
+		thesis.title 		= form.title.data,
+		thesis.keywords 	= form.keywords.data,
+		thesis.tech_adviser = form.tech_adviser.data,
+		thesis.class_adviser= form.class_adviser.data,
+		thesis.researcher 	= form.researcher.data,
+		thesis.abstract 	= form.abstract.data
+
+		db.session.commit()
+		flash('The Database has been updated!', 'success')
+		return redirect(url_for('view_thesis'))
+
+	elif request.method == 'GET':
+		form.thesis_code.data   = thesis.thesis_code
+		form.title.data 	    = thesis.title
+		form.keywords.data      = thesis.keywords
+		form.tech_adviser.data  = thesis.tech_adviser
+		form.class_adviser.data = thesis.class_adviser
+		form.researcher.data 	= thesis.researcher
+		form.abstract.data 		= thesis.abstract
+		form.submit.label 		= "Update"
+
+	return render_template('/admin_pages/add_thesis.html',
+		title='Modify Thesis',
+		form=form,
+		legend='Modify Thesis')
+
 
 @app.route("/admin_dashboard")
 @login_required
@@ -73,7 +114,11 @@ def admin_add_thesis():
 		db.session.commit()
 		flash('New Thesis Has Been Added to the Database.', 'success')
 		return redirect(url_for('admin_add_thesis'))
-	return render_template('/admin_pages/add_thesis.html', title='Add Thesis', form=form)
+	return render_template('/admin_pages/add_thesis.html',
+		title='Add Thesis',
+		form=form,
+		legend='New Thesis'
+		)
 
 
 # Login, Register, Logout Below

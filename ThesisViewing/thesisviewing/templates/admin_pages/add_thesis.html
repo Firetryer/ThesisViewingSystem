@@ -1,5 +1,5 @@
 {% extends "admin_dash.html" %}
-{% set admin_page = "add_thesis" %}
+{% set admin_page = "thesis_settings" %}
 {% block admin %}
 	
 
@@ -7,7 +7,7 @@
 		<form method="POST" action="">	
 			{{ form.hidden_tag() }}
 			<fieldset class="form-group">
-				<legend class="border-bottom mb-4">Add New Thesis</legend>
+				<legend class="border-bottom mb-4">{{ legend }}</legend>
 				<div class="form-group">
 					{{ form.thesis_code.label(class="form-control-label") }}
 

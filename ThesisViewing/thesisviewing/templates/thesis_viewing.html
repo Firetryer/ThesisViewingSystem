@@ -25,7 +25,7 @@
 						{% if current_user.is_admin() %}
 						<div class="card-footer">
 							
-							<a class="card-text text-info text-right"href="#"> Modify </a>
+							<a class="card-text text-info text-right"href="{{ url_for('thesis_update', thesis_code=post.thesis_code)}}"> Modify </a>
 							<a class="card-text text-danger text-right" href="#"> delete </a>
 							
 						</div>
