@@ -2,8 +2,40 @@
 {% set active_page = "view_thesis" %}
 {% block content %}
 
+
 	<div class="container-fluid row">
-		<div class="container-fluid col-8 " >
+
+		<div class="container col-md-4 col-md-pull-4 ">
+			<div id="accordion">
+				<div class="card  bg-secondary" >
+					<div class="card-header" id="dash_header">
+						<a class="card_button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" href="#"></a>
+						<h5 class="card-title text-light text-center" > Advanced Search</h5>
+					</div>
+					<div id="collapseOne" class="collapse" aria-labelledby="dash_header" data-parent="#accordion">
+						<div class="card-body ">					
+							
+							<ul class="list-group ">
+								<li class="list-group-item">
+									<p class="card-text"><a class="text-secondary" href="{{ url_for('view_thesis')}}">Modify / Delete Thesis Records</a></p>
+								</li>
+								<li class="list-group-item">
+									<p class="card-text"><a class="text-secondary" href="{{ url_for('admin_dash')}}">View System Logs</a></p>
+								</li>
+								<li class="list-group-item">
+									<p class="card-text"><a class="text-secondary"  href="{{ url_for('admin_dash')}}">View Users in the System</a></p>
+								</li>
+								<li class="list-group-item">
+									<p class="card-text"><a class="text-secondary"  href="{{ url_for('admin_dash')}}">Back to Dashboard</a></p>
+								</li>
+							</ul>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid col-md-8 col-md-push-8 " >
 				{% for page_num in post.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
 					{% if page_num %}
 						{% if post.page == page_num %}
@@ -64,36 +96,7 @@
 
 			
 		</div>
-		<div class="container col-4 ">
-			<div id="accordion">
-				<div class="card  bg-secondary" >
-					<div class="card-header" id="dash_header">
-						<a class="card_button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" href="#"></a>
-						<h5 class="card-title text-light text-center" > Advanced Search</h5>
-					</div>
-					<div id="collapseOne" class="collapse" aria-labelledby="dash_header" data-parent="#accordion">
-						<div class="card-body ">					
-							
-							<ul class="list-group ">
-								<li class="list-group-item">
-									<p class="card-text"><a class="text-secondary" href="{{ url_for('view_thesis')}}">Modify / Delete Thesis Records</a></p>
-								</li>
-								<li class="list-group-item">
-									<p class="card-text"><a class="text-secondary" href="{{ url_for('admin_dash')}}">View System Logs</a></p>
-								</li>
-								<li class="list-group-item">
-									<p class="card-text"><a class="text-secondary"  href="{{ url_for('admin_dash')}}">View Users in the System</a></p>
-								</li>
-								<li class="list-group-item">
-									<p class="card-text"><a class="text-secondary"  href="{{ url_for('admin_dash')}}">Back to Dashboard</a></p>
-								</li>
-							</ul>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 	</div>
 
 	

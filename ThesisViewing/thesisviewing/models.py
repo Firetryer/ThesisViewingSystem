@@ -18,6 +18,8 @@ class User(db.Model, UserMixin):
 	
 	def __repr__(self):
 		return f"User('{self.id_number}', '{self.course_dept}')"
+	def full_name(self):
+		return self.first_name + ' ' + self.middle_name +  '' + self.last_name
 	def get_id(self):
 		return self.id_number
 	def is_admin(self):
