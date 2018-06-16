@@ -90,7 +90,7 @@ def admin_dash():
 	if not current_user.is_admin:
 		flash(" Warning: Only admins accounts are allowed in the Admin Dashboard.")
 		return redirect(url_for('view_thesis')) 
-	return render_template('/admin_pages/admin_landing.html')
+	return render_template('/admin_dash.html')
 
 @app.route("/admin_dashboard/logs")
 @login_required
