@@ -29,6 +29,22 @@ def thesis_page(thesis_code):
 
 
 #Admin Pages Below
+#Admin Pages Below
+@app.route("/view_thesis/<thesis_code>/delete", methods=['POST'])
+@login_required
+def thesis_delete(thesis_code):
+	if not current_user.is_admin:
+		flash(" Warning: Only admins accounts are allowed in the Admin Dashboard.")
+		return redirect(url_for('view_thesis'))
+
+	thesis = Thesis.query.get_or_404(thesis_code)
+	db.session.delete(thesis)
+	db.session.commit()
+	flash('The Thesis record has been deleted!', 'info')
+	return redirect(url_for('view_thesis'))
+
+
+
 @app.route("/view_thesis/<thesis_code>/modify", methods=['GET', 'POST'])
 @login_required
 def thesis_update(thesis_code):
@@ -49,7 +65,7 @@ def thesis_update(thesis_code):
 		thesis.abstract 	= form.abstract.data
 
 		db.session.commit()
-		flash('The Database has been updated!', 'success')
+		flash('The Thesis Record has been updated!', 'success')
 		return redirect(url_for('view_thesis'))
 
 	elif request.method == 'GET':
