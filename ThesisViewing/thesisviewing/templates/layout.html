@@ -40,7 +40,7 @@
 
 			        	{% if current_user.is_authenticated %}
 			            <li class="nav-item">
-			                <button class="btn btn-danger text-light" href="{{ url_for('logout') }}">Logout</button>
+			                <a class="btn btn-danger text-light" href="{{ url_for('logout') }}">Logout</a>
 			            </li>
 			            {% endif %}
 			        </ul>
