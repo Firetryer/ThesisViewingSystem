@@ -17,8 +17,11 @@ def homepage():
 @app.route("/view_thesis")
 @login_required
 def view_thesis():
-	thesis = Thesis.query.all()
+	page = request.args.get('page', 1, type=int)
+	thesis = Thesis.query.paginate(page=page, per_page=5)
 	return render_template('thesis_viewing.html', post=thesis)
+
+
 
 @app.route("/view_thesis/<thesis_code>")
 def thesis_page(thesis_code):
@@ -92,6 +95,7 @@ def admin_dash():
 		return redirect(url_for('view_thesis')) 
 	return render_template('/admin_dash.html')
 
+
 @app.route("/admin_dashboard/logs")
 @login_required
 def admin_logs():
@@ -99,6 +103,7 @@ def admin_logs():
 		flash(" Warning: Only admins accounts are allowed in the Admin Dashboard.")
 		return redirect(url_for('view_thesis')) 
 	return render_template('/admin_pages/logs.html')
+
 
 @app.route("/admin_dashboard/thesis_controls")
 @login_required
@@ -108,13 +113,13 @@ def admin_thesis():
 		return redirect(url_for('view_thesis')) 
 	return render_template('/admin_pages/thesis_controls.html')
 
+
 @app.route("/admin_dashboard/add_thesis", methods=['GET', 'POST'])
 @login_required
 def admin_add_thesis():
 	if not current_user.is_admin:
 		flash(" Warning: Only admins accounts are allowed in the Admin Dashboard.")
 		return redirect(url_for('view_thesis')) 
-
 	form = AddThesisForm()
 	if form.validate_on_submit():
 		post = Thesis(

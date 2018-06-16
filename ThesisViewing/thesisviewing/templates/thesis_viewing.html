@@ -4,8 +4,18 @@
 
 	<div class="container-fluid row">
 		<div class="container-fluid col-8 " >
-			
-				{% for post in post %}
+				{% for page_num in post.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+					{% if page_num %}
+						{% if post.page == page_num %}
+							<a class="btn btn-info mb-4"href="{{ url_for('view_thesis', page=page_num)}}">{{ page_num }}</a>
+						{% else %}	
+							<a class="btn btn-outline-info mb-4"href="{{ url_for('view_thesis', page=page_num)}}">{{ page_num }}</a>
+						{% endif %}
+					{% else %}
+						...
+					{% endif %}
+				{% endfor %}
+				{% for post in post.items %}
 					<div class="card mb-3" >
 						<div class="card-header">
 							<h5 class="card-title"><b><a href="{{ url_for('thesis_page', thesis_code=post.thesis_code)}}">{{ post.title }}</a></b></h5>
@@ -51,16 +61,36 @@
 						{% endif %}
 					</div>
 				{% endfor %}
-			
+
 			
 		</div>
 		<div class="container col-4 ">
-				<div class="card h-100 w-100  bg-secondary" >
-				<div class="card-header">
-					<h5 class="card-title text-light text-center">Search</h5>
-				</div>
-				<div class="card-body ">					
-					
+			<div id="accordion">
+				<div class="card  bg-secondary" >
+					<div class="card-header" id="dash_header">
+						<a class="card_button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" href="#"></a>
+						<h5 class="card-title text-light text-center" > Advanced Search</h5>
+					</div>
+					<div id="collapseOne" class="collapse" aria-labelledby="dash_header" data-parent="#accordion">
+						<div class="card-body ">					
+							
+							<ul class="list-group ">
+								<li class="list-group-item">
+									<p class="card-text"><a class="text-secondary" href="{{ url_for('view_thesis')}}">Modify / Delete Thesis Records</a></p>
+								</li>
+								<li class="list-group-item">
+									<p class="card-text"><a class="text-secondary" href="{{ url_for('admin_dash')}}">View System Logs</a></p>
+								</li>
+								<li class="list-group-item">
+									<p class="card-text"><a class="text-secondary"  href="{{ url_for('admin_dash')}}">View Users in the System</a></p>
+								</li>
+								<li class="list-group-item">
+									<p class="card-text"><a class="text-secondary"  href="{{ url_for('admin_dash')}}">Back to Dashboard</a></p>
+								</li>
+							</ul>
+
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

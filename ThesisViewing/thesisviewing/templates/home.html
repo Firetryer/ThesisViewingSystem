@@ -14,10 +14,10 @@
 	</head>
 	<body>
 		
-		
-			<div class='container'>
-				<h4 class="text-center" >AdU Computer Science Department - Thesis Viewing System</h4>
-
+		<div class="container">
+			<h4 class="text-center" >AdU Computer Science Department - Thesis Viewing System</h4>
+			<div style="margin:20%; margin-top:6%">
+				
 				{% with messages = get_flashed_messages(with_categories=true) %}
 					{% if messages %}
 						{% for category, message in messages %}
@@ -30,7 +30,7 @@
 
 				{% block content %} {% endblock %}
 			</div>
-		
+		</div>
 		
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
