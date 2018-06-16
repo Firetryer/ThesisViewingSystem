@@ -11,7 +11,7 @@
 				{% for post in post %}
 					<div class="card mb-3" >
 						<div class="card-header">
-							<h5 class="card-title"><b>{{ post.title }}</b></h5>
+							<h5 class="card-title"><b><a href="{{ url_for('thesis_page', thesis_code=post.thesis_code)}}">{{ post.title }}</a></b></h5>
 							<h6 class="card-subtitle mb-2 text-muted">
 								Thesis Code : {{ post.thesis_code }}
 							</h6>

@@ -20,8 +20,10 @@ def view_thesis():
 	thesis = Thesis.query.all()
 	return render_template('thesis_viewing.html', post=thesis)
 
-
-
+@app.route("/view_thesis/<thesis_code>")
+def thesis_page(thesis_code):
+	post = Thesis.query.get_or_404(thesis_code)
+	return render_template('thesis_page.html', title=post.title, post=post)
 
 #Admin Pages Below
 
