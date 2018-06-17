@@ -7,7 +7,7 @@ from thesisviewing.models import User
 class RegisterationForm(FlaskForm):
 	id_number = StringField('ID Number', validators=[DataRequired(), Length(min = 2, max = 20)])
 	first_name = StringField('First Name', validators=[DataRequired()])
-	middle_name = StringField('Middle Name', validators=[DataRequired()])
+	middle_name = StringField('Middle Name', validators=[])
 	last_name = StringField('Last Name', validators=[DataRequired()])
 	course_dept = StringField('Course/Department', validators=[DataRequired()])
 	year_position = StringField('Year/Position', validators=[DataRequired()])

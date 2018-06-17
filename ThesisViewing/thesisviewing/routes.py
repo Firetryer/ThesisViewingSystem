@@ -4,7 +4,7 @@ from sqlalchemy import or_
 from thesisviewing import app, db, bcrypt
 from thesisviewing.models import User, Thesis, UserLogs
 from thesisviewing.forms import RegisterationForm, LoginForm, AddThesisForm
-
+import datetime
 
 
 @app.route("/")
@@ -29,6 +29,15 @@ def view_thesis():
 @login_required
 def thesis_page(thesis_code):
 	post = Thesis.query.get_or_404(thesis_code)
+	new_log = UserLogs(
+		id_number=current_user.id_number,
+		thesis_code=thesis_code,
+		name=current_user.full_name(),
+		date_time=datetime.datetime.now(),
+		user_level=current_user.user_level
+		)
+	db.session.add(new_log)
+	db.session.commit()
 	return render_template('thesis_page.html', title=post.title, post=post)
 
 @app.route("/search")
