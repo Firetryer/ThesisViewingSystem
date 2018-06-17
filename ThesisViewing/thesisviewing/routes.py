@@ -47,9 +47,7 @@ def search():
 	queries = '%'+request.args.get('query')+'%'
 	page = request.args.get('page', 1, type=int)
 	per_page=request.args.get('pp', 5, type=int)
-	print(page)
-	print(per_page)
-	print(queries)
+
 	all_posts=Thesis.query.filter(
 		or_(
 			Thesis.title.like(queries),
@@ -135,7 +133,12 @@ def admin_logs():
 	if not current_user.is_admin():
 		flash(" Warning: Only admins accounts are allowed in the Admin Dashboard.")
 		return redirect(url_for('view_thesis')) 
-	return render_template('/admin_pages/logs.html')
+	
+	page = request.args.get('page', 1, type=int)
+	per_page = request.args.get('per_page', 5,type=int)
+	logs = UserLogs.query.paginate(page=page, per_page=per_page)
+	return render_template('/admin_pages/logs.html', logs=logs, per_page=per_page)
+	
 
 
 @app.route("/admin_dashboard/thesis_controls")
