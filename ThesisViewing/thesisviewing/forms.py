@@ -41,3 +41,7 @@ class AddThesisForm(FlaskForm):
 	researcher = StringField('Researcher', validators=[DataRequired()])
 	abstract = TextAreaField('Abstract', validators=[DataRequired()])
 	submit = SubmitField('Add Thesis')
+
+class SearchForm(FlaskForm):
+	search_words = StringField('Search')
+	submit = SubmitField('Search')

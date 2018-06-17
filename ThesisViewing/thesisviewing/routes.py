@@ -1,5 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, logout_user, current_user, login_required
+from sqlalchemy import or_
 from thesisviewing import app, db, bcrypt
 from thesisviewing.models import User, Thesis, UserLogs
 from thesisviewing.forms import RegisterationForm, LoginForm, AddThesisForm
@@ -18,16 +19,39 @@ def homepage():
 @login_required
 def view_thesis():
 	page = request.args.get('page', 1, type=int)
-	thesis = Thesis.query.paginate(page=page, per_page=5)
-	return render_template('thesis_viewing.html', post=thesis)
+	per_page = request.args.get('per_page', 5,type=int)
+	thesis = Thesis.query.paginate(page=page, per_page=per_page)
+	return render_template('thesis_viewing.html', post=thesis, per_page=per_page)
 
 
 
 @app.route("/view_thesis/<thesis_code>")
+@login_required
 def thesis_page(thesis_code):
 	post = Thesis.query.get_or_404(thesis_code)
 	return render_template('thesis_page.html', title=post.title, post=post)
 
+@app.route("/search")
+@login_required
+def search():
+	
+	queries = '%'+request.args.get('query')+'%'
+	page = request.args.get('page', 1, type=int)
+	per_page=request.args.get('pp', 5, type=int)
+	print(page)
+	print(per_page)
+	print(queries)
+	all_posts=Thesis.query.filter(
+		or_(
+			Thesis.title.like(queries),
+			Thesis.thesis_code.like(queries),
+			Thesis.keywords.like(queries),
+			Thesis.researcher.like(queries),
+			Thesis.class_adviser.like(queries),
+			Thesis.tech_adviser.like(queries),
+			Thesis.abstract.like(queries)))\
+		.paginate(page=page, per_page=per_page)
+	return render_template('thesis_viewing.html', post=all_posts)
 
 
 
