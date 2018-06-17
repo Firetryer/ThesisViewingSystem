@@ -5,7 +5,7 @@
 
 	<div class="container-fluid row">
 
-		<div class="container col-md-4 col-md-pull-4 ">
+		<div class="container col-md-4 col-md-pull-4" style="padding-right:20px; border-right: 1px solid #ccc;">
 			<div id="accordion">
 				<div class="card  bg-secondary" >
 					<div class="card-header" id="dash_header">
@@ -54,6 +54,9 @@
 						...
 					{% endif %}
 				{% endfor %}
+				{% if post.items == None %}
+					<h5 class="text-dark outline"> No Records have been added yet.</h5>
+				{% endif %}
 				{% for post in post.items %}
 					<div class="card mb-3" >
 						<div class="card-header">

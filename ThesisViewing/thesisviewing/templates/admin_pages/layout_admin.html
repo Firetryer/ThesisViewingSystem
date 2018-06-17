@@ -15,10 +15,13 @@
 							
 							<ul class="list-group ">
 								<li class="list-group-item">
+									<p class="card-text"><a class="text-secondary" href="{{ url_for('admin_add_thesis')}}">Add A New Thesis Record</a></p>
+								</li>
+								<li class="list-group-item">
 									<p class="card-text"><a class="text-secondary" href="{{ url_for('view_thesis')}}">Modify / Delete Thesis Records</a></p>
 								</li>
 								<li class="list-group-item">
-									<p class="card-text"><a class="text-secondary" href="{{ url_for('admin_dash')}}">View System Logs</a></p>
+									<p class="card-text"><a class="text-secondary" href="{{ url_for('admin_logs')}}">View System Logs</a></p>
 								</li>
 								<li class="list-group-item">
 									<p class="card-text"><a class="text-secondary"  href="{{ url_for('admin_dash')}}">View Users in the System</a></p>
