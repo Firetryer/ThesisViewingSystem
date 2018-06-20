@@ -3,7 +3,7 @@ from flask_login import UserMixin
 
 @login_manager.user_loader
 def load_user(user_id):
-	return User.query.get(int(user_id))
+	return User.query.get(user_id)
 
 class User(db.Model, UserMixin):
 	id_number = db.Column(db.VARCHAR(50), unique = True, primary_key = True)
@@ -34,6 +34,7 @@ class Thesis(db.Model):
 	class_adviser = db.Column(db.VARCHAR(50))
 	researcher = db.Column(db.VARCHAR(50))
 	abstract = db.Column(db.VARCHAR(200))
+	available = db.Column(db.Boolean, default=True)
 	views = db.relationship('UserLogs', backref='thesis', lazy=True)
 
 
