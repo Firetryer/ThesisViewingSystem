@@ -6,6 +6,13 @@ from thesisviewing.models import User, Thesis, UserLogs
 from thesisviewing.forms import RegisterationForm, LoginForm, AddThesisForm
 import datetime
 
+# !! TODO
+#		FEATURES=====
+#	 Add More Search Functions On The Thesis Page
+#	 Borrowing System
+#	 
+#		STYLE======
+#	 More blue for adamson themed
 
 @app.route("/")
 @app.route("/home")
