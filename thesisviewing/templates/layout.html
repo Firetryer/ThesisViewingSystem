@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		{% if title %}
+			<title>Thesis Viewer - {{title}}</title>
+		{% else %}
+			<title>Thesis Viewer</title>
+		{% endif %}
+
+		<link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+		<link href="{{url_for('static', filename = 'css/sticky-footer-navbar.css')}}" rel="stylesheet">
+		<link href="{{url_for('static', filename = 'css/styles.css')}}" rel="stylesheet">
+		
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-light bg-light nav2">
+				<div class="order-1">
+					
+			        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+			            <span class="navbar-toggler-icon"></span>
+			        </button>
+		    	</div>
+		        <div class="mx-auto container row">
+		        	<div class="container-fluid col-7 order-0">
+		        		<h4 class="">AdU CompSci Dep. Thesis Viewer</h4>
+		        	</div>
+		        	<div class="container col-5">
+					    <div class="navbar-collapse collapse w-100 order-3 order-md-1 dual-collapse2 ">
+					        <ul class="navbar-nav ml-auto ">
+			
+					            <li class="nav-item {{ 'active' if active_page == 'view_thesis' else '' }}">
+					                <a class="nav-link" style="" href="{{ url_for('view_thesis') }}" >Browse Thesis</a>
+					            </li>
+					            
+					            {% if current_user.is_admin() %}
+					            <li class="nav-item {{ 'active' if active_page == 'admin_dash' else '' }}">
+					                <a class="nav-link" href="{{ url_for('admin_dash') }}">Admin Dashboard</a>
+					            </li>
+					            {% endif %}
+					            <li class="nav-item {{ 'active' if active_page == 'view_thesis' else '' }}">
+					            	<div class="dropdown show">
+						            	<a class="btn dropdown-toggle text-secondary" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											Account
+										</a>
+										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+											<a class="dropdown-item" href="#">Account Info</a>
+											<a class="dropdown-item" href="#">Change Password</a>
+											<a class="dropdown-item  text-danger" href="{{ url_for('logout') }}">Logout</a>
+										</div>
+									</div>
+					            </li>
+					        </ul>
+					    </div>
+					</div>
+				</div>
+			</nav>
+		</header>
+		
+			<div class="container">
+			{% with messages = get_flashed_messages(with_categories=true) %}
+				{% if messages %}
+					{% for category, message in messages %}
+						<div class="alert alert-{{ category }}">
+							{{ message }}
+						</div>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+
+			{% block content %}{% endblock %}
+			</div>
+		
+
+		
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="{{url_for('static', filename = 'js/jquery-3.3.1.min.js')}}"></script>
+		<script src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="{{url_for('static', filename = 'css/bootstrap.min.css')}}"></script>
+	</body>
+</html>
